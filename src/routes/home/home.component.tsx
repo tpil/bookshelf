@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import Header from '../header/header.component';
+import Header from '../../components/header/header.component';
 import BookStore from '../../components/book-store/book-store.component';
 
 const Home = () => {

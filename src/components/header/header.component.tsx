@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { Outlet } from 'react-router-dom';
 import MorotechLogo from '../../assets/morotech_logo.png';
-import SearchInputField from '../../components/search-input-field/search-input-field.component';
+import SearchInputField from '../search-input-field/search-input-field.component';
 import {
   HeaderContainer,
   LogoContainer,

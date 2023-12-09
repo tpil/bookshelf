@@ -1,9 +1,14 @@
 import styled from 'styled-components';
+import { breakpoints } from '../../assets/styles/breakpoints';
 
 export const HeaderContainer = styled.div`
   display: flex;
   margin-bottom: 1rem;
   align-items: center;
+
+  @media (max-width: ${breakpoints.phone}) {
+      flex-direction: column;
+    }
 `;
 
 export const LogoContainer = styled.div`

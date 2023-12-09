@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { breakpoints } from '../../assets/styles/breakpoints';
 
 export const SearchInputContainer = styled.div`
   width: 50%;
@@ -9,6 +10,11 @@ export const SearchInputContainer = styled.div`
   border: 1px #ced4da solid;
   border-radius: 100px;
   padding: 0 0.5rem;
+
+  @media (max-width: ${breakpoints.phone}) {
+    width: 100%;
+    margin: 1rem;
+  }
 `;
 
 export const SearchIconContainer = styled.div`

@@ -2,7 +2,7 @@ export type Authors = {
   name: string;
   birth_year: number;
   death_year: number;
-}
+};
 
 export type Book = {
   id: number;
@@ -14,13 +14,17 @@ export type Book = {
   languages: string[];
   copyright: boolean;
   media_type: string;
-  formats: object;
+  formats: { [key: string]: string };
   download_count: number;
-}
+};
 
 export type BookListModel = {
   count: number;
   next: string | null;
   previous: string | null;
-  results: Book[]
+  results: Book[];
+};
+export enum BookImageFormats {
+  html = 'text/html',
+  jpeg = 'image/jpeg',
 }
