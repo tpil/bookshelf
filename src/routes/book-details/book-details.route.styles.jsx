@@ -45,6 +45,7 @@ export const BookImageContainer = styled.div`
   flex-direction: column;
   img {
     width: 200px;
+    height: 300px;
   }
 `;
 
