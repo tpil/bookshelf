@@ -1,25 +1,26 @@
-import { Fragment, MouseEvent, useContext, useEffect } from 'react';
+import { MouseEvent, useContext, useEffect } from 'react';
 import { BooksContext } from '../../contexts/books.context';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Authors, BookImageFormats } from '../../types/book.types';
 import LazyImage from '../../components/shared/lazy-image/lazy-image.component';
 import {
   BookDetailsRouteHeader,
-  BookDetailsReturnButton,
   BookDetailsContainer,
   BookImageContainer,
   BookDetails,
   BookTitle,
   BookAuthors,
+  BookDetailsButton,
 } from './book-details.route.styles';
 import NoImage from '../../components/shared/no-image/no-image.component';
+import SetFavoriteBook from '../../components/set-favorite-book/set-favorite-book.component';
 
 const BookDetailsRoute = () => {
   const { getBookById, selectedBook } = useContext(BooksContext);
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const returnToHomeHandler = (ecent: MouseEvent<HTMLButtonElement>) => {
+  const returnToHomeHandler = (event: MouseEvent<HTMLButtonElement>) => {
     navigate('/');
   };
 
@@ -32,9 +33,9 @@ const BookDetailsRoute = () => {
   return (
     <div>
       <BookDetailsRouteHeader>
-        <BookDetailsReturnButton onClick={returnToHomeHandler}>
+        <BookDetailsButton onClick={returnToHomeHandler}>
           <i className="fa-solid fa-chevron-left"></i> Back
-        </BookDetailsReturnButton>
+        </BookDetailsButton>
       </BookDetailsRouteHeader>
       {selectedBook?.title ? (
         <BookDetailsContainer>
@@ -46,6 +47,7 @@ const BookDetailsRoute = () => {
             ) : (
               <NoImage />
             )}
+            <SetFavoriteBook book={selectedBook} />
           </BookImageContainer>
           <BookDetails>
             <BookTitle>{selectedBook.title}</BookTitle>
@@ -55,6 +57,16 @@ const BookDetailsRoute = () => {
                 .map((author: Authors) => author.name.replace(/,/g, ''))
                 .join(', ')}`}
             </BookAuthors>
+            <div>
+              <b>ID: </b>
+              <i>{selectedBook.id}</i>
+            </div>
+            <div>
+              <i className="fa fa-download" aria-hidden="true">
+                :
+              </i>
+              {selectedBook.download_count}
+            </div>
             <div>
               <b>Related subjects: </b>
               <i>{selectedBook.subjects.join(', ')}</i>

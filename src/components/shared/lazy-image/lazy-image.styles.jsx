@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const SpinnerOverlay = styled.div`
-  height: 60vh;
-  width:200px;
+  height: 300px;
+  width: 200px;
   display: flex;
   justify-content: center;
   align-items: center;

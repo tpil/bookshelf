@@ -14,7 +14,6 @@ const SearchInputField = () => {
 
   const changeHanlder = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
-    console.log("new searcValue",searchValue);
   };
 
   const clearTextHanlder = () => {
@@ -26,10 +25,10 @@ const SearchInputField = () => {
       if (searchValue !== searchDebouncedValue) {
         setSearchDebouncedValue(searchValue);
       } else {
-        console.log('run search');
+        //console.log('run search');
         searchBooks(searchDebouncedValue);
       }
-    }, 1000);
+    }, 800);
 
     return () => clearTimeout(timeOut);
   }, [searchValue, searchDebouncedValue]);
