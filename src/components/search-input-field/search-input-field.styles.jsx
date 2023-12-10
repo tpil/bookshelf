@@ -32,6 +32,9 @@ export const SearchInput = styled.input`
   }
 `;
 
-export const SearchButton = styled.div`
+export const ClearInput = styled.div`
   font-size: 1.5rem;
+  &:hover {
+    cursor: pointer;
+  }
 `;

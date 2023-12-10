@@ -5,13 +5,12 @@ import { Book, BookImageFormats } from '../../types/book.types';
 import { BookStoreList } from './book-store.styles';
 
 const BookStore = () => {
-  const { books } = useContext(BooksContext);
-  console.log('bookstore:', books);
+  const { books  } = useContext(BooksContext);
+
   return (
     <Fragment>
-      <h4>Book Store</h4>
       <BookStoreList>
-        {books.map((book: Book) => (
+        {books.length > 0 ? books.map((book: Book) => (
           <BookItem
             key={book.id}
             id={book.id}
@@ -20,7 +19,7 @@ const BookStore = () => {
             authors={book.authors}
             imagesrc={book.formats[BookImageFormats.jpeg]}
           />
-        ))}
+        )) : <h4>Oops! Not any books found...</h4>}
       </BookStoreList>
     </Fragment>
   );

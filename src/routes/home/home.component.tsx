@@ -1,14 +1,13 @@
-import { Outlet } from 'react-router-dom';
 import Header from '../../components/header/header.component';
 import BookStore from '../../components/book-store/book-store.component';
+import { Fragment } from 'react';
 
 const Home = () => {
   return (
-    <div>
+    <Fragment>
       <Header />
       <BookStore />
-      <Outlet />
-    </div>
+    </Fragment>
   );
 };
 

@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Authors } from '../../types/book.types';
 import LazyImage from '../shared/lazy-image/lazy-image.component';
 import {
@@ -6,7 +7,9 @@ import {
   BookItemContainer,
   BookStats,
   BookTitle,
+  MissingImage,
 } from './book-item.styles';
+import { MouseEvent } from 'react';
 
 type BookItemProps = {
   id: number;
@@ -15,6 +18,7 @@ type BookItemProps = {
   imagesrc: string;
   authors: Authors[];
 };
+
 const BookItem = ({
   id,
   title,
@@ -22,23 +26,32 @@ const BookItem = ({
   imagesrc,
   authors,
 }: BookItemProps) => {
+  const navigate = useNavigate();
+
+  const clickHanler = (event: MouseEvent<HTMLElement>) => {
+    navigate(`/books/${id}`);
+  };
+
   return (
-    <BookCardContainer>
+    <BookCardContainer onClick={clickHanler}>
       <BookItemContainer>
-        <LazyImage imagesrc={imagesrc} />
+        {imagesrc ? <LazyImage imagesrc={imagesrc} /> : <MissingImage />}
       </BookItemContainer>
       <BookTitle>{title}</BookTitle>
       <BookDetails>
-        <div className="authors">
+        <span>
           {`By  ${
             authors.length > 1
-              ? authors.filter((author) => author.name).join(', ')
-              : authors[0].name
+              ? authors
+                  .map((author: Authors) => author.name.replace(/,/g, ''))
+                  .join(', ')
+              : authors[0]
+                ? authors[0].name.replace(/,/g, '')
+                : ''
           }`}
-        </div>
+        </span>
         <BookStats>
           <span>ID: {id}</span>
-
           <span>
             <i className="fa fa-download" aria-hidden="true"></i> {downloads}
           </span>
